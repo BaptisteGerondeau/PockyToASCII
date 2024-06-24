@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/PockyToASCII_jar</output-path>
     <root id="archive" name="PockyToASCII.jar">
       <element id="module-output" name="PockyToASCII" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-cli-1.8.0/commons-cli-1.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-cli-1.8.0/commons-cli-1.8.0-tests.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-cli-1.8.0/commons-cli-1.8.0-javadoc.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-cli-1.8.0/commons-cli-1.8.0-sources.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/commons-cli-1.8.0/commons-cli-1.8.0-test-sources.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
