@@ -4,6 +4,7 @@ public abstract class Renderer implements ImageToASCIIRenderer {
     protected String brightnessKey;
     protected ASCIIBrightnessScale brightnessScale;
     protected PixelMatrix.BRIGHTNESS_MODE brightnessMode;
+    protected StringBuilder ASCIIMatrix;
 
     protected int[][] brightnessMatrix;
 
@@ -12,6 +13,7 @@ public abstract class Renderer implements ImageToASCIIRenderer {
         brightnessKey = null;
         brightnessScale = null;
         brightnessMode = null;
+        ASCIIMatrix = null;
 
         brightnessMatrix = null;
     }
@@ -38,22 +40,25 @@ public abstract class Renderer implements ImageToASCIIRenderer {
         }
 
         brightnessMatrix = pixelMatrix.getBrightnessMatrix(brightnessMode);
-        StringBuilder ASCIIMatrix = new StringBuilder();
+        ASCIIMatrix = new StringBuilder();
 
-        preRenderHook(ASCIIMatrix);
+        preRenderHook();
 
         for (int x = 0; x < brightnessMatrix.length; x++) {
-            // Newline since we're going down a row
-            ASCIIMatrix.append('\n');
             for (int y = 0; y < brightnessMatrix[1].length; y++) {
                 String ASCIIPixel = renderPixel(x, y);
                 ASCIIMatrix.append(ASCIIPixel);
             }
+            newLine(x);
         }
 
-        postRenderHook(ASCIIMatrix);
+        postRenderHook();
 
         return ASCIIMatrix.toString();
+    }
+
+    protected void newLine(int x) {
+        ASCIIMatrix.append('\n');
     }
 
     public String render(PixelMatrix pixelMatrix, String brightnessKey, boolean invert, PixelMatrix.BRIGHTNESS_MODE brightnessMode) {
@@ -63,9 +68,9 @@ public abstract class Renderer implements ImageToASCIIRenderer {
         return render();
     }
 
-    protected void preRenderHook(StringBuilder ASCIIMatrix) {}
+    protected void preRenderHook() {}
 
-    protected void postRenderHook(StringBuilder ASCIIMatrix) {}
+    protected void postRenderHook() {}
 
     protected abstract String renderPixel(int x, int y);
 }

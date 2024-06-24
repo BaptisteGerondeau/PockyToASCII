@@ -21,9 +21,6 @@ public class ASCIIBrightnessScale{
         }
 
         int index = Math.max(brightness - remainder, 0) / coefficient;
-        if (index == 65){
-            System.out.println("" + remainder + " b " + coefficient);
-        }
         return scale[index];
     }
 }

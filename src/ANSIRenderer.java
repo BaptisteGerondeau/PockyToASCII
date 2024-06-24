@@ -6,6 +6,7 @@ public class ANSIRenderer extends Renderer {
         super();
         ANSIChannel = null;
     }
+
     @Override
     protected String renderPixel(int x, int y) {
         StringBuilder ANSIPixel = new StringBuilder();
@@ -15,12 +16,12 @@ public class ANSIRenderer extends Renderer {
     }
 
     @Override
-    protected void preRenderHook(StringBuilder ASCIIMatrix) {
+    protected void preRenderHook() {
         ANSIChannel = this.pixelMatrix.getANSIColourMatrix();
     }
 
     @Override
-    protected void postRenderHook(StringBuilder ASCIIMatrix) {
+    protected void postRenderHook() {
         ASCIIMatrix.append(ConsoleColours.RESET);
     }
 
