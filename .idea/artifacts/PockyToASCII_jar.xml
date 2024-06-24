@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="PockyToASCII:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PockyToASCII_jar</output-path>
+    <root id="archive" name="PockyToASCII.jar">
+      <element id="module-output" name="PockyToASCII" />
+    </root>
+  </artifact>
+</component>

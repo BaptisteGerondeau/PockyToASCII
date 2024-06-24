@@ -2,7 +2,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
 
@@ -23,7 +22,14 @@ public class PixelMatrix {
         LUMINOSITY
     }
 
-    public PixelMatrix(String imagePath, int dwidth, int dheight) throws InterruptedException {
+    public PixelMatrix(String imagePath, int dwidth, int dheight) {
+        if (imagePath == null || imagePath.isEmpty()) {
+            throw new IllegalArgumentException("Image path cannot be empty");
+        }
+        if (dwidth == 0 || dheight == 0) {
+            throw new IllegalArgumentException("Dimensions cannot be zero");
+        }
+
         this.imagePath = imagePath;
         this.fimage = new File(imagePath);
         this.image = null;
@@ -70,7 +76,7 @@ public class PixelMatrix {
         int[][] ANSIMatrix = new int[height][width];
         for (int x = 0; x < height; x++) {
             for (int y = 0; y < width; y++) {
-                ANSIMatrix[x][y] = generateANSIChannel(rgbMatrix[x][y][0], rgbMatrix[x][y][1], rgbMatrix[x][y][2]);
+                ANSIMatrix[x][y] = ConsoleColours.RGBtoANSI(rgbMatrix[x][y][0], rgbMatrix[x][y][1], rgbMatrix[x][y][2]).ordinal();
             }
         }
         return ANSIMatrix;
@@ -117,32 +123,5 @@ public class PixelMatrix {
                 rgbMatrix[x][y][2] = c.getBlue();
             }
         }
-    }
-
-    private int generateANSIChannel(int red, int green, int blue) {
-        if (red > 180 && green < 60 && blue < 60) {
-            return ConsoleColours.ChannelValues.RED.ordinal();
-        }
-        if (green > 180 && red < 60 && blue < 60) {
-            return ConsoleColours.ChannelValues.GREEN.ordinal();
-        }
-        if (blue > 180 && green < 60 && red < 60) {
-            return ConsoleColours.ChannelValues.BLUE.ordinal();
-        }
-        if (blue < 60 && green < 60 && red < 60) {
-            return ConsoleColours.ChannelValues.BLACK.ordinal();
-        }
-
-        if (red > 180 && green > 180 && blue < 60) {
-            return ConsoleColours.ChannelValues.YELLOW.ordinal();
-        }
-        if (red > 180 && blue > 180 && green < 60) {
-            return ConsoleColours.ChannelValues.PURPLE.ordinal();
-        }
-        if (blue > 180 && green > 180 && red < 60) {
-            return ConsoleColours.ChannelValues.CYAN.ordinal();
-        }
-
-        return ConsoleColours.ChannelValues.WHITE.ordinal();
     }
 }
