@@ -4,7 +4,9 @@ public class ASCIIBrightnessScale{
     private int coefficient;
     private int remainder;
 
-    public ASCIIBrightnessScale(String scale){
+    private boolean invertBrightnessValue;
+
+    public ASCIIBrightnessScale(String scale, boolean invert){
         this.scale = scale.toCharArray();
 
         remainder = 255 % scale.length();
@@ -12,12 +14,9 @@ public class ASCIIBrightnessScale{
     }
 
     public char GetCharacterFromBrightness(int brightnessValue){
-        return GetCharacterFromBrightness(brightnessValue, false);
-    }
-
-    public char GetCharacterFromBrightness(int brightnessValue, boolean invert){
         int brightness = brightnessValue - 1;
-        if (invert){
+
+        if (invertBrightnessValue){
             brightness = Math.abs(254 - brightnessValue);
         }
 

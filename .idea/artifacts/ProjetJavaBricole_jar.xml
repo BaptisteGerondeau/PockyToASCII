@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="ProjetJavaBricole:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/ProjetJavaBricole_jar</output-path>
-    <root id="archive" name="ProjetJavaBricole.jar">
-      <element id="module-output" name="PockyToASCII" />
-    </root>
-  </artifact>
-</component>

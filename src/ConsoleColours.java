@@ -39,4 +39,31 @@ public class ConsoleColours {
             default -> WHITE;
         };
     }
+
+    public static ChannelValues RGBtoANSI(int red, int green, int blue) {
+        if (red > 180 && green < 60 && blue < 60) {
+            return ChannelValues.RED;
+        }
+        if (green > 180 && red < 60 && blue < 60) {
+            return ChannelValues.GREEN;
+        }
+        if (blue > 180 && green < 60 && red < 60) {
+            return ChannelValues.BLUE;
+        }
+        if (blue < 60 && green < 60 && red < 60) {
+            return ChannelValues.BLACK;
+        }
+
+        if (red > 180 && green > 180 && blue < 60) {
+            return ChannelValues.YELLOW;
+        }
+        if (red > 180 && blue > 180 && green < 60) {
+            return ChannelValues.PURPLE;
+        }
+        if (blue > 180 && green > 180 && red < 60) {
+            return ChannelValues.CYAN;
+        }
+
+        return ChannelValues.WHITE;
+    }
 }
