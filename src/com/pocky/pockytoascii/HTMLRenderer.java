@@ -1,3 +1,5 @@
+package com.pocky.pockytoascii;
+
 public class HTMLRenderer extends Renderer {
 
     private int[][][] RawColourMatrix;

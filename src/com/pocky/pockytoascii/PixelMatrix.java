@@ -1,3 +1,5 @@
+package com.pocky.pockytoascii;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -58,7 +60,7 @@ public class PixelMatrix {
 
     @Override
     public String toString() {
-        return "PixelMatrix imagePath=" + imagePath + ", width=" + width + ", height=" + height;
+        return "com.pocky.pockytoascii.PixelMatrix imagePath=" + imagePath + ", width=" + width + ", height=" + height;
     }
 
     public int[][][] getRgbMatrix() {

@@ -1,3 +1,4 @@
+import com.pocky.pockytoascii.*;
 import org.apache.commons.cli.*;
 
 import java.io.BufferedWriter;

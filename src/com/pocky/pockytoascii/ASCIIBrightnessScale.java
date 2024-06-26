@@ -1,3 +1,5 @@
+package com.pocky.pockytoascii;
+
 public class ASCIIBrightnessScale{
     public char[] scale;
 

@@ -1,3 +1,5 @@
+package com.pocky.pockytoascii;
+
 public abstract class Renderer implements ImageToASCIIRenderer {
 
     protected PixelMatrix pixelMatrix;
@@ -36,7 +38,7 @@ public abstract class Renderer implements ImageToASCIIRenderer {
     @Override
     public String render() {
         if (pixelMatrix == null || brightnessMode == null || brightnessScale == null) {
-            throw new IllegalArgumentException("Renderer not initialized, call setters or provide parameters");
+            throw new IllegalArgumentException("com.pocky.pockytoascii.Renderer not initialized, call setters or provide parameters");
         }
 
         brightnessMatrix = pixelMatrix.getBrightnessMatrix(brightnessMode);

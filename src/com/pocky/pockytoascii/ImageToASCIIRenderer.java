@@ -1,3 +1,5 @@
+package com.pocky.pockytoascii;
+
 public interface ImageToASCIIRenderer {
     public void setImage(PixelMatrix pixelMatrix);
     public void setBrightnessKey(String brightnessKey, boolean invert);

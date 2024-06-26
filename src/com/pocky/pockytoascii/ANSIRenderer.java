@@ -1,3 +1,5 @@
+package com.pocky.pockytoascii;
+
 public class ANSIRenderer extends Renderer {
 
     private int[][] ANSIChannel;
