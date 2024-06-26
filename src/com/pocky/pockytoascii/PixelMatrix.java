@@ -11,8 +11,6 @@ public class PixelMatrix {
     private String imagePath;
     private int width;
     private int height;
-    private File fimage;
-    private BufferedImage image;
 
     private int[] rawPixels;
 
@@ -24,24 +22,12 @@ public class PixelMatrix {
         LUMINOSITY
     }
 
-    public PixelMatrix(String imagePath, int dwidth, int dheight) {
-        if (imagePath == null || imagePath.isEmpty()) {
-            throw new IllegalArgumentException("Image path cannot be empty");
-        }
+
+
+    public PixelMatrix(BufferedImage image, int dwidth, int dheight) {
         if (dwidth == 0 || dheight == 0) {
             throw new IllegalArgumentException("Dimensions cannot be zero");
         }
-
-        this.imagePath = imagePath;
-        this.fimage = new File(imagePath);
-        this.image = null;
-        try {
-            image = ImageIO.read(fimage);
-            System.out.print("Successfully loaded image!\n");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         ImageIcon imageIcon = new ImageIcon(image);
         Image scaledImage = imageIcon.getImage().getScaledInstance(dwidth, dheight, Image.SCALE_DEFAULT);
 
@@ -58,9 +44,28 @@ public class PixelMatrix {
         rgbMatrix = null;
     }
 
+    public static PixelMatrix load(String imagePath, int dwidth, int dheight) {
+        if (imagePath == null || imagePath.isEmpty()) {
+            throw new IllegalArgumentException("Image path cannot be empty");
+        }
+
+        imagePath = imagePath;
+        File fimage = new File(imagePath);
+        BufferedImage image = null;
+        try {
+            image = ImageIO.read(fimage);
+            System.out.print("Successfully loaded image!\n");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return new PixelMatrix(image, dwidth, dheight);
+    }
+
+
     @Override
     public String toString() {
-        return "com.pocky.pockytoascii.PixelMatrix imagePath=" + imagePath + ", width=" + width + ", height=" + height;
+        return "PixelMatrix imagePath=" + imagePath + ", width=" + width + ", height=" + height;
     }
 
     public int[][][] getRgbMatrix() {

@@ -24,7 +24,7 @@ public class Main {
             return;
         }
 
-        PixelMatrix pixels = new PixelMatrix(imagePath, width, height);
+        PixelMatrix pixels = PixelMatrix.load(imagePath, width, height);
 
         System.out.println(pixels);
 
