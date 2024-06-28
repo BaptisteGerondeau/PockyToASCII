@@ -32,6 +32,8 @@ public class Main {
 
         Renderer PockyToASCII = null;
 
+        StringBuilder renderedImage = new StringBuilder();
+
         switch (format) {
             case ASCII:
                 PockyToASCII = new RawASCIIRenderer();
@@ -41,6 +43,8 @@ public class Main {
                 break;
             case HTML:
                 PockyToASCII = new HTMLRenderer();
+                renderedImage.append("<pre id=\"htmlrender\" style=\"background-color: #000000;" +
+                        " font-weight: bold; padding: 4px 5px;letter-spacing: 5px; line-height: 13px\">");
                 break;
             default:
                 PockyToASCII = new RawASCIIRenderer();
@@ -50,17 +54,22 @@ public class Main {
         PockyToASCII.setBrightnessMode(PixelMatrix.BRIGHTNESS_MODE.AVERAGE);
         PockyToASCII.setBrightnessKey(ASCIIBrightnessScale, false);
 
+        renderedImage.append(PockyToASCII.render());
+        if (format == FORMATS.HTML) {
+            renderedImage.append("</pre>");
+        }
+
         if (outputPath != null) {
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath));
-                writer.write(PockyToASCII.render());
+                writer.write(renderedImage.toString());
                 writer.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         else {
-            System.out.print(PockyToASCII.render());
+            System.out.print(renderedImage.toString());
         }
 
     }

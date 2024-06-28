@@ -35,7 +35,6 @@ public class HTMLRenderer extends Renderer {
 
     @Override
     protected void preRenderHook() {
-        ASCIIMatrix.append("<pre id=\"htmlrender\" style=\"font-size: 9px; background-color: #000000; font-weight: bold; padding: 4px 5px; --fs: 9px;\">");
         RawColourMatrix = pixelMatrix.getRgbMatrix();
 
         resetColourChain(0, 0);
@@ -44,7 +43,6 @@ public class HTMLRenderer extends Renderer {
     @Override
     protected void postRenderHook() {
         ASCIIMatrix.append(flushCurrentColourChain());
-        ASCIIMatrix.append("</pre>");
     }
 
     private String flushCurrentColourChain() {
